@@ -23,29 +23,15 @@
 </template>
 
 <style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-}
-
-#nav {
-  padding: 30px;
-}
-
-#nav a {
-  font-weight: bold;
-  color: #2c3e50;
-}
-
-#nav a.router-link-exact-active {
-  color: #42b983;
-}
 </style>
 
-<script>
+
+<script src="https://unpkg.com/babel-polyfill/dist/polyfill.min.js"></script>
+<script src="https://unpkg.com/vuetify@1.0.17/dist/vuetify.min.js"></script>
+<script type="module">
+  import Vue from 'https://cdn.jsdelivr.net/npm/vue@2.6.12/dist/vue.esm.browser.js'
+
+
 let SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition
 let recognition = SpeechRecognition? new SpeechRecognition() : false
 
@@ -118,11 +104,11 @@ Vue.component('speech-to-text', {
       recognition.lang = this.lang
       recognition.interimResults = true
 
-      recognition.addEventListener('speechstart', event => {
+      recognition.addEventListener('speechstart',() => {
         this.speaking = true
       })
 
-      recognition.addEventListener('speechend', event => {
+      recognition.addEventListener('speechend', () => {
         this.speaking = false
       })
 
@@ -171,3 +157,7 @@ new Vue({
   }
 })
 </script>
+
+
+
+
